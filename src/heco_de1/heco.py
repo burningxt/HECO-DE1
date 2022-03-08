@@ -190,16 +190,6 @@ class Heco(Cec2017):
                         = np.delete(pop[:pop_size_current[0], :], rand_int(0, pop_size_current[0] - 1), 0)
                     pop_size_current[0] += -1
 
-    # def linearly_decrease_archive_size(self, archive, archive_size_current, pop_size_current):
-    #     archive_size_next = self.archive_coefficient * pop_size_current[0]
-    #     if archive_size_next < archive_size_current[0]:
-    #         for i in range(archive_size_current[0] - archive_size_next):
-    #             if i:
-    #                 archive[:archive_size_current[0] - 1, :] \
-    #                     = np.delete(archive[:archive_size_current[0], :],
-    #                                 rand_int(0, archive_size_current[0] - 1), 0)
-    #                 archive_size_current[0] += -1
-
     def evolution(self):
         pop = np.zeros((self.pop_size_init, self.dimension + 10))
         subpop = np.zeros((self.lambda_, self.dimension + 10))
