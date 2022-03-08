@@ -234,7 +234,7 @@ class Heco(Cec2017):
                 best_obj = pop[0, self.dimension + 2]
             elif best_vio == pop[0, self.dimension + 3]:
                 if best_obj > pop[0, self.dimension + 2]:
-                    best_obj = pop[0, self.dimension + 3]
+                    best_obj = pop[0, self.dimension + 2]
             print(fes, best_obj, best_vio, pop[0, self.dimension + 2], pop[0, self.dimension + 3],
                   pop[-1, self.dimension + 2], pop[-1, self.dimension + 3])
         return best_obj, best_vio
