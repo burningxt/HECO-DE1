@@ -12,7 +12,7 @@ class Heco(Cec2017):
         self.lambda_ = 20
         self.H = 5
         self.number_of_strategy = 4
-        self.archive_coefficient = 1
+        self.archive_coefficient = 4
         self.gamma = 0.1
         self.fes_max = 20000 * dimension
 
@@ -127,19 +127,21 @@ class Heco(Cec2017):
         subpop_plus[self.lambda_, self.dimension] = w1 * equ_norm_child + w2 * obj_norm_child + w3 * vio_norm_child
 
     def selection(self, subpop_plus, subpop, archive, fitness_improvements, success_mu, success_cr,
-                  mu, cr, strategy_id, count_success_strategy, archive_position, archive_current_size, idx):
+                  mu, cr, strategy_id, count_success_strategy, pop_size_current,
+                  archive_position, archive_current_size, idx):
         if subpop_plus[idx, self.dimension] > subpop_plus[-1, self.dimension]:
             success_mu[strategy_id].append(mu)
             success_cr[strategy_id].append(cr)
             fitness_improvements[strategy_id].append(abs(subpop_plus[idx, self.dimension]
                                                      - subpop_plus[-1, self.dimension]))
-            if archive_position[0] < self.archive_coefficient * self.pop_size_init - 1:
+            if archive_position[0] < self.archive_coefficient * pop_size_current[0] - 1:
                 archive[archive_position[0], :] = subpop_plus[idx, :]
                 archive_position[0] += 1
                 archive_current_size[0] += 1
             else:
-                archive[rand_int(0, self.archive_coefficient * self.pop_size_init - 1), :] = subpop_plus[idx, :]
-                archive_current_size[0] = self.archive_coefficient * self.pop_size_init
+                archive[rand_int(0, self.archive_coefficient * pop_size_current[0] - 1), :] \
+                    = subpop_plus[idx, :]
+                archive_current_size[0] = self.archive_coefficient * pop_size_current[0]
             subpop[idx, :] = subpop_plus[-1, :]
             count_success_strategy[strategy_id] += 1
 
@@ -188,6 +190,16 @@ class Heco(Cec2017):
                         = np.delete(pop[:pop_size_current[0], :], rand_int(0, pop_size_current[0] - 1), 0)
                     pop_size_current[0] += -1
 
+    # def linearly_decrease_archive_size(self, archive, archive_size_current, pop_size_current):
+    #     archive_size_next = self.archive_coefficient * pop_size_current[0]
+    #     if archive_size_next < archive_size_current[0]:
+    #         for i in range(archive_size_current[0] - archive_size_next):
+    #             if i:
+    #                 archive[:archive_size_current[0] - 1, :] \
+    #                     = np.delete(archive[:archive_size_current[0], :],
+    #                                 rand_int(0, archive_size_current[0] - 1), 0)
+    #                 archive_size_current[0] += -1
+
     def evolution(self):
         pop = np.zeros((self.pop_size_init, self.dimension + 10))
         subpop = np.zeros((self.lambda_, self.dimension + 10))
@@ -222,7 +234,8 @@ class Heco(Cec2017):
                 subpop_plus[self.lambda_, :] = child
                 self.fitness(subpop_plus, fes, idx)
                 self.selection(subpop_plus, subpop, archive, fitness_improvements, success_mu, success_cr,
-                               mu, cr, strategy_id, count_success_strategy, archive_position, archive_size_current, idx)
+                               mu, cr, strategy_id, count_success_strategy, pop_size_current,
+                               archive_position, archive_size_current, idx)
                 fes += 1
             pop[selected_indexes, :] = subpop
             self.update_memory(memory_mu, memory_cr, success_mu, success_cr, fitness_improvements,
@@ -234,9 +247,10 @@ class Heco(Cec2017):
                 best_obj = pop[0, self.dimension + 2]
             elif best_vio == pop[0, self.dimension + 3]:
                 if best_obj > pop[0, self.dimension + 2]:
-                    best_obj = pop[0, self.dimension + 3]
+                    best_obj = pop[0, self.dimension + 2]
+            best_solution_on_obj = self.find_best(pop[:pop_size_current[0], :], 2)
             print(fes, best_obj, best_vio, pop[0, self.dimension + 2], pop[0, self.dimension + 3],
-                  pop[-1, self.dimension + 2], pop[-1, self.dimension + 3])
+                  best_solution_on_obj[self.dimension + 2], best_solution_on_obj[self.dimension + 3])
         return best_obj, best_vio
 
 

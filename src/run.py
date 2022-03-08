@@ -24,8 +24,8 @@ import multiprocessing as mp
 
 if __name__ == '__main__':
     start = timeit.default_timer()
-    prob_id = 28
-    dim = 10
+    prob_id = 3
+    dim = 100
     o, m, m1, m2 = load_mat(prob_id, dim)
     Heco(prob_id, dim, o, m, m1, m2).evolution()
     stop = timeit.default_timer()

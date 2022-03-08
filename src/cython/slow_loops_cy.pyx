@@ -192,7 +192,7 @@ cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):
         if child[i] < lb:
             child[i] = min(2.0 * lb - child[i], ub)
         elif child[i] > ub:
-            child[i] = max(lb, 2.0 * lb - child[i])
+            child[i] = max(lb, 2.0 * ub - child[i])
 
 def x_correction(child, _lambda, lb, ub):
     return _x_correction(child, _lambda, lb, ub)
