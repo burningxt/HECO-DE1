@@ -80,7 +80,7 @@ def np_max_min(z, dimension, axis):
     return _np_max_min(z, dimension, axis)
 
 
-cdef tuple _normalization(double[:, :]subpop_plus, int lambda_, int dimension,  int idx):
+cdef tuple _normalization(double[:, :]subpop_plus, int dimension,  int idx):
     cdef:
         double equ_min, equ_max, obj_min, obj_max, vio_min, vio_max, equ_norm_idx, \
             obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
@@ -90,13 +90,13 @@ cdef tuple _normalization(double[:, :]subpop_plus, int lambda_, int dimension,  
     equ_norm_idx = (subpop_plus[idx, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
     obj_norm_idx = (subpop_plus[idx, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
     vio_norm_idx = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
-    equ_norm_child = (subpop_plus[lambda_, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
-    obj_norm_child = (subpop_plus[lambda_, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
-    vio_norm_child = (subpop_plus[lambda_, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
+    equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
+    obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
+    vio_norm_child = (subpop_plus[-1, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
 
-def normalization(subpop_plus, lambda_, dimension, idx):
-    return _normalization(subpop_plus, lambda_, dimension, idx)
+def normalization(subpop_plus, dimension, idx):
+    return _normalization(subpop_plus, dimension, idx)
 
 
 cdef void _problem_18_27(int dimension, double[:]y, double[:]z):
@@ -187,12 +187,12 @@ cdef tuple _rand_choice(int size):
 def rand_choice(size):
     return _rand_choice(size)
 
-cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):
-    for i in range(_lambda):
+cdef void _x_correction(double[:]child, int dimension, double lb, double ub):
+    for i in range(dimension):
         if child[i] < lb:
             child[i] = min(2.0 * lb - child[i], ub)
         elif child[i] > ub:
             child[i] = max(lb, 2.0 * ub - child[i])
 
-def x_correction(child, _lambda, lb, ub):
-    return _x_correction(child, _lambda, lb, ub)
+def x_correction(child, dimension, lb, ub):
+    return _x_correction(child, dimension, lb, ub)

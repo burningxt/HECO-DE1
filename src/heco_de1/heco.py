@@ -82,13 +82,13 @@ class Heco(Cec2017):
                                      + mu * (best_solution_on_eq[:self.dimension] - subpop[idx, :self.dimension]) \
                                      + mu * (subpop[x_r1, :self.dimension]
                                              - archive[x_r2 - self.lambda_, :self.dimension])
-        x_correction(child, self.lambda_, lb, ub)
+        x_correction(child, self.dimension, lb, ub)
 
     def mutation_2(self, subpop, child, mu, lb, ub):
         x_1, x_2, x_3 = rand_choice(self.lambda_)
         child[:self.dimension] = subpop[x_1, :self.dimension] + mu * (subpop[x_2, :self.dimension]
                                                                       - subpop[x_3, :self.dimension])
-        x_correction(child, self.lambda_, lb, ub)
+        x_correction(child, self.dimension, lb, ub)
 
     def crossover_exp(self, subpop, child, cr, idx):
         crossover_exp_cy(subpop, child, self.dimension, cr, idx)
@@ -114,7 +114,7 @@ class Heco(Cec2017):
         # self.eq(subpop_plus)
         self.eq_old(subpop_plus)
         equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child \
-            = normalization(subpop_plus, self.lambda_, self.dimension, idx)
+            = normalization(subpop_plus, self.dimension, idx)
         w_t = fes / self.fes_max
         w_i = (idx + 1) / self.lambda_
         w1 = w_t * w_i
@@ -124,7 +124,7 @@ class Heco(Cec2017):
         # w2 = 1 - w_t
         # w3 = w_t
         subpop_plus[idx, self.dimension] = w1 * equ_norm_idx + w2 * obj_norm_idx + w3 * vio_norm_idx
-        subpop_plus[self.lambda_, self.dimension] = w1 * equ_norm_child + w2 * obj_norm_child + w3 * vio_norm_child
+        subpop_plus[-1, self.dimension] = w1 * equ_norm_child + w2 * obj_norm_child + w3 * vio_norm_child
 
     def selection(self, subpop_plus, subpop, archive, fitness_improvements, success_mu, success_cr,
                   mu, cr, strategy_id, count_success_strategy, pop_size_current,

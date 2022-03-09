@@ -1760,7 +1760,7 @@ static double __pyx_f_13slow_loops_cy__rand_cauchy(double, double); /*proto*/
 static double __pyx_f_13slow_loops_cy__sgn(double); /*proto*/
 static double __pyx_f_13slow_loops_cy__np_max(__Pyx_memviewslice); /*proto*/
 static PyObject *__pyx_f_13slow_loops_cy__np_max_min(__Pyx_memviewslice, int, int); /*proto*/
-static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice, int, int, int); /*proto*/
+static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice, int, int); /*proto*/
 static void __pyx_f_13slow_loops_cy__problem_18_27(int, __Pyx_memviewslice, __Pyx_memviewslice); /*proto*/
 static PyObject *__pyx_f_13slow_loops_cy__problem_17_26(int, __Pyx_memviewslice); /*proto*/
 static void __pyx_f_13slow_loops_cy__crossover_exp_cy(__Pyx_memviewslice, __Pyx_memviewslice, int, double, int); /*proto*/
@@ -1859,7 +1859,6 @@ static const char __pyx_k_start[] = "start";
 static const char __pyx_k_encode[] = "encode";
 static const char __pyx_k_format[] = "format";
 static const char __pyx_k_import[] = "__import__";
-static const char __pyx_k_lambda[] = "lambda_";
 static const char __pyx_k_name_2[] = "__name__";
 static const char __pyx_k_np_max[] = "np_max";
 static const char __pyx_k_pickle[] = "pickle";
@@ -1874,7 +1873,6 @@ static const char __pyx_k_memview[] = "memview";
 static const char __pyx_k_Ellipsis[] = "Ellipsis";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_itemsize[] = "itemsize";
-static const char __pyx_k_lambda_2[] = "_lambda";
 static const char __pyx_k_pyx_type[] = "__pyx_type";
 static const char __pyx_k_rand_int[] = "rand_int";
 static const char __pyx_k_setstate[] = "__setstate__";
@@ -1993,8 +1991,6 @@ static PyObject *__pyx_n_s_idx;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
-static PyObject *__pyx_n_s_lambda;
-static PyObject *__pyx_n_s_lambda_2;
 static PyObject *__pyx_n_s_lb;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_memview;
@@ -2067,14 +2063,14 @@ static PyObject *__pyx_pf_13slow_loops_cy_2rand_normal(CYTHON_UNUSED PyObject *_
 static PyObject *__pyx_pf_13slow_loops_cy_4rand_cauchy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_mu, PyObject *__pyx_v_gamma); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_6np_max(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_z); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_8np_max_min(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_z, PyObject *__pyx_v_dimension, PyObject *__pyx_v_axis); /* proto */
-static PyObject *__pyx_pf_13slow_loops_cy_10normalization(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_subpop_plus, PyObject *__pyx_v_lambda_, PyObject *__pyx_v_dimension, PyObject *__pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_13slow_loops_cy_10normalization(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_subpop_plus, PyObject *__pyx_v_dimension, PyObject *__pyx_v_idx); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_12problem_18_27(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_dimension, PyObject *__pyx_v_y, PyObject *__pyx_v_z); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_14problem_17_26(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_dimension, PyObject *__pyx_v_y); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_16crossover_exp_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_subpop, PyObject *__pyx_v_child, PyObject *__pyx_v_dimension, PyObject *__pyx_v_cr, PyObject *__pyx_v_idx); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_18crossover_bi_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_subpop, PyObject *__pyx_v_child, PyObject *__pyx_v_dimension, PyObject *__pyx_v_cr, PyObject *__pyx_v_idx); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_20rand_choice_pb_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_arr, PyObject *__pyx_v_pb); /* proto */
 static PyObject *__pyx_pf_13slow_loops_cy_22rand_choice(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_size); /* proto */
-static PyObject *__pyx_pf_13slow_loops_cy_24x_correction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child, PyObject *__pyx_v__lambda, PyObject *__pyx_v_lb, PyObject *__pyx_v_ub); /* proto */
+static PyObject *__pyx_pf_13slow_loops_cy_24x_correction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child, PyObject *__pyx_v_dimension, PyObject *__pyx_v_lb, PyObject *__pyx_v_ub); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -3519,12 +3515,12 @@ static PyObject *__pyx_pf_13slow_loops_cy_8np_max_min(CYTHON_UNUSED PyObject *__
 /* "slow_loops_cy.pyx":83
  * 
  * 
- * cdef tuple _normalization(double[:, :]subpop_plus, int lambda_, int dimension,  int idx):             # <<<<<<<<<<<<<<
+ * cdef tuple _normalization(double[:, :]subpop_plus, int dimension,  int idx):             # <<<<<<<<<<<<<<
  *     cdef:
  *         double equ_min, equ_max, obj_min, obj_max, vio_min, vio_max, equ_norm_idx, \
  */
 
-static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx_v_subpop_plus, int __pyx_v_lambda_, int __pyx_v_dimension, int __pyx_v_idx) {
+static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx_v_subpop_plus, int __pyx_v_dimension, int __pyx_v_idx) {
   double __pyx_v_equ_min;
   double __pyx_v_equ_max;
   double __pyx_v_obj_min;
@@ -3708,7 +3704,7 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
  *     equ_norm_idx = (subpop_plus[idx, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
  *     obj_norm_idx = (subpop_plus[idx, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)             # <<<<<<<<<<<<<<
  *     vio_norm_idx = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
- *     equ_norm_child = (subpop_plus[lambda_, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
+ *     equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
  */
   __pyx_t_7 = __pyx_v_idx;
   __pyx_t_6 = (__pyx_v_dimension + 2);
@@ -3737,8 +3733,8 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
  *     equ_norm_idx = (subpop_plus[idx, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
  *     obj_norm_idx = (subpop_plus[idx, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
  *     vio_norm_idx = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)             # <<<<<<<<<<<<<<
- *     equ_norm_child = (subpop_plus[lambda_, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
- *     obj_norm_child = (subpop_plus[lambda_, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
+ *     equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
+ *     obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
  */
   __pyx_t_6 = __pyx_v_idx;
   __pyx_t_7 = (__pyx_v_dimension + 3);
@@ -3766,11 +3762,11 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
   /* "slow_loops_cy.pyx":93
  *     obj_norm_idx = (subpop_plus[idx, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
  *     vio_norm_idx = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
- *     equ_norm_child = (subpop_plus[lambda_, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)             # <<<<<<<<<<<<<<
- *     obj_norm_child = (subpop_plus[lambda_, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
- *     vio_norm_child = (subpop_plus[lambda_, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
+ *     equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)             # <<<<<<<<<<<<<<
+ *     obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
+ *     vio_norm_child = (subpop_plus[-1, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
  */
-  __pyx_t_7 = __pyx_v_lambda_;
+  __pyx_t_7 = -1L;
   __pyx_t_6 = (__pyx_v_dimension + 1);
   __pyx_t_8 = -1;
   if (__pyx_t_7 < 0) {
@@ -3795,12 +3791,12 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
 
   /* "slow_loops_cy.pyx":94
  *     vio_norm_idx = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
- *     equ_norm_child = (subpop_plus[lambda_, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
- *     obj_norm_child = (subpop_plus[lambda_, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)             # <<<<<<<<<<<<<<
- *     vio_norm_child = (subpop_plus[lambda_, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
+ *     equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
+ *     obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)             # <<<<<<<<<<<<<<
+ *     vio_norm_child = (subpop_plus[-1, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
  */
-  __pyx_t_6 = __pyx_v_lambda_;
+  __pyx_t_6 = -1L;
   __pyx_t_7 = (__pyx_v_dimension + 2);
   __pyx_t_8 = -1;
   if (__pyx_t_6 < 0) {
@@ -3824,13 +3820,13 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
   __pyx_v_obj_norm_child = (__pyx_t_5 / __pyx_t_4);
 
   /* "slow_loops_cy.pyx":95
- *     equ_norm_child = (subpop_plus[lambda_, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
- *     obj_norm_child = (subpop_plus[lambda_, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
- *     vio_norm_child = (subpop_plus[lambda_, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)             # <<<<<<<<<<<<<<
+ *     equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
+ *     obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
+ *     vio_norm_child = (subpop_plus[-1, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)             # <<<<<<<<<<<<<<
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
  * 
  */
-  __pyx_t_7 = __pyx_v_lambda_;
+  __pyx_t_7 = -1L;
   __pyx_t_6 = (__pyx_v_dimension + 3);
   __pyx_t_8 = -1;
   if (__pyx_t_7 < 0) {
@@ -3854,11 +3850,11 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
   __pyx_v_vio_norm_child = (__pyx_t_4 / __pyx_t_5);
 
   /* "slow_loops_cy.pyx":96
- *     obj_norm_child = (subpop_plus[lambda_, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
- *     vio_norm_child = (subpop_plus[lambda_, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
+ *     obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
+ *     vio_norm_child = (subpop_plus[-1, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child             # <<<<<<<<<<<<<<
  * 
- * def normalization(subpop_plus, lambda_, dimension, idx):
+ * def normalization(subpop_plus, dimension, idx):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyFloat_FromDouble(__pyx_v_equ_norm_idx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
@@ -3900,7 +3896,7 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
   /* "slow_loops_cy.pyx":83
  * 
  * 
- * cdef tuple _normalization(double[:, :]subpop_plus, int lambda_, int dimension,  int idx):             # <<<<<<<<<<<<<<
+ * cdef tuple _normalization(double[:, :]subpop_plus, int dimension,  int idx):             # <<<<<<<<<<<<<<
  *     cdef:
  *         double equ_min, equ_max, obj_min, obj_max, vio_min, vio_max, equ_norm_idx, \
  */
@@ -3925,8 +3921,8 @@ static PyObject *__pyx_f_13slow_loops_cy__normalization(__Pyx_memviewslice __pyx
 /* "slow_loops_cy.pyx":98
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
  * 
- * def normalization(subpop_plus, lambda_, dimension, idx):             # <<<<<<<<<<<<<<
- *     return _normalization(subpop_plus, lambda_, dimension, idx)
+ * def normalization(subpop_plus, dimension, idx):             # <<<<<<<<<<<<<<
+ *     return _normalization(subpop_plus, dimension, idx)
  * 
  */
 
@@ -3935,7 +3931,6 @@ static PyObject *__pyx_pw_13slow_loops_cy_11normalization(PyObject *__pyx_self, 
 static PyMethodDef __pyx_mdef_13slow_loops_cy_11normalization = {"normalization", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_13slow_loops_cy_11normalization, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_13slow_loops_cy_11normalization(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_subpop_plus = 0;
-  PyObject *__pyx_v_lambda_ = 0;
   PyObject *__pyx_v_dimension = 0;
   PyObject *__pyx_v_idx = 0;
   int __pyx_lineno = 0;
@@ -3945,14 +3940,12 @@ static PyObject *__pyx_pw_13slow_loops_cy_11normalization(PyObject *__pyx_self, 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("normalization (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_subpop_plus,&__pyx_n_s_lambda,&__pyx_n_s_dimension,&__pyx_n_s_idx,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_subpop_plus,&__pyx_n_s_dimension,&__pyx_n_s_idx,0};
+    PyObject* values[3] = {0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         CYTHON_FALLTHROUGH;
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
@@ -3969,62 +3962,53 @@ static PyObject *__pyx_pw_13slow_loops_cy_11normalization(PyObject *__pyx_self, 
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lambda)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dimension)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("normalization", 1, 4, 4, 1); __PYX_ERR(0, 98, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("normalization", 1, 3, 3, 1); __PYX_ERR(0, 98, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dimension)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_idx)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("normalization", 1, 4, 4, 2); __PYX_ERR(0, 98, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_idx)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("normalization", 1, 4, 4, 3); __PYX_ERR(0, 98, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("normalization", 1, 3, 3, 2); __PYX_ERR(0, 98, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "normalization") < 0)) __PYX_ERR(0, 98, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
     __pyx_v_subpop_plus = values[0];
-    __pyx_v_lambda_ = values[1];
-    __pyx_v_dimension = values[2];
-    __pyx_v_idx = values[3];
+    __pyx_v_dimension = values[1];
+    __pyx_v_idx = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("normalization", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 98, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("normalization", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 98, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("slow_loops_cy.normalization", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_13slow_loops_cy_10normalization(__pyx_self, __pyx_v_subpop_plus, __pyx_v_lambda_, __pyx_v_dimension, __pyx_v_idx);
+  __pyx_r = __pyx_pf_13slow_loops_cy_10normalization(__pyx_self, __pyx_v_subpop_plus, __pyx_v_dimension, __pyx_v_idx);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_13slow_loops_cy_10normalization(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_subpop_plus, PyObject *__pyx_v_lambda_, PyObject *__pyx_v_dimension, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pf_13slow_loops_cy_10normalization(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_subpop_plus, PyObject *__pyx_v_dimension, PyObject *__pyx_v_idx) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_t_2;
   int __pyx_t_3;
-  int __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_4 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4032,37 +4016,36 @@ static PyObject *__pyx_pf_13slow_loops_cy_10normalization(CYTHON_UNUSED PyObject
 
   /* "slow_loops_cy.pyx":99
  * 
- * def normalization(subpop_plus, lambda_, dimension, idx):
- *     return _normalization(subpop_plus, lambda_, dimension, idx)             # <<<<<<<<<<<<<<
+ * def normalization(subpop_plus, dimension, idx):
+ *     return _normalization(subpop_plus, dimension, idx)             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_dsds_double(__pyx_v_subpop_plus, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 99, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_lambda_); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_dimension); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_idx); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
-  __pyx_t_5 = __pyx_f_13slow_loops_cy__normalization(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 99, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_dimension); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_idx); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_13slow_loops_cy__normalization(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
-  __pyx_r = __pyx_t_5;
-  __pyx_t_5 = 0;
+  __pyx_r = __pyx_t_4;
+  __pyx_t_4 = 0;
   goto __pyx_L0;
 
   /* "slow_loops_cy.pyx":98
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
  * 
- * def normalization(subpop_plus, lambda_, dimension, idx):             # <<<<<<<<<<<<<<
- *     return _normalization(subpop_plus, lambda_, dimension, idx)
+ * def normalization(subpop_plus, dimension, idx):             # <<<<<<<<<<<<<<
+ *     return _normalization(subpop_plus, dimension, idx)
  * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
-  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_AddTraceback("slow_loops_cy.normalization", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -5942,7 +5925,7 @@ static PyObject *__pyx_pf_13slow_loops_cy_22rand_choice(CYTHON_UNUSED PyObject *
  * def rand_choice(size):
  *     return _rand_choice(size)             # <<<<<<<<<<<<<<
  * 
- * cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):
+ * cdef void _x_correction(double[:]child, int dimension, double lb, double ub):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_size); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 188, __pyx_L1_error)
@@ -5974,12 +5957,12 @@ static PyObject *__pyx_pf_13slow_loops_cy_22rand_choice(CYTHON_UNUSED PyObject *
 /* "slow_loops_cy.pyx":190
  *     return _rand_choice(size)
  * 
- * cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):             # <<<<<<<<<<<<<<
- *     for i in range(_lambda):
+ * cdef void _x_correction(double[:]child, int dimension, double lb, double ub):             # <<<<<<<<<<<<<<
+ *     for i in range(dimension):
  *         if child[i] < lb:
  */
 
-static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_child, int __pyx_v__lambda, double __pyx_v_lb, double __pyx_v_ub) {
+static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_child, int __pyx_v_dimension, double __pyx_v_lb, double __pyx_v_ub) {
   int __pyx_v_i;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -5998,19 +5981,19 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
 
   /* "slow_loops_cy.pyx":191
  * 
- * cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):
- *     for i in range(_lambda):             # <<<<<<<<<<<<<<
+ * cdef void _x_correction(double[:]child, int dimension, double lb, double ub):
+ *     for i in range(dimension):             # <<<<<<<<<<<<<<
  *         if child[i] < lb:
  *             child[i] = min(2.0 * lb - child[i], ub)
  */
-  __pyx_t_1 = __pyx_v__lambda;
+  __pyx_t_1 = __pyx_v_dimension;
   __pyx_t_2 = __pyx_t_1;
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
     /* "slow_loops_cy.pyx":192
- * cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):
- *     for i in range(_lambda):
+ * cdef void _x_correction(double[:]child, int dimension, double lb, double ub):
+ *     for i in range(dimension):
  *         if child[i] < lb:             # <<<<<<<<<<<<<<
  *             child[i] = min(2.0 * lb - child[i], ub)
  *         elif child[i] > ub:
@@ -6029,11 +6012,11 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
     if (__pyx_t_6) {
 
       /* "slow_loops_cy.pyx":193
- *     for i in range(_lambda):
+ *     for i in range(dimension):
  *         if child[i] < lb:
  *             child[i] = min(2.0 * lb - child[i], ub)             # <<<<<<<<<<<<<<
  *         elif child[i] > ub:
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  */
       __pyx_t_7 = __pyx_v_ub;
       __pyx_t_4 = __pyx_v_i;
@@ -6065,8 +6048,8 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
       *((double *) ( /* dim=0 */ (__pyx_v_child.data + __pyx_t_4 * __pyx_v_child.strides[0]) )) = __pyx_t_9;
 
       /* "slow_loops_cy.pyx":192
- * cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):
- *     for i in range(_lambda):
+ * cdef void _x_correction(double[:]child, int dimension, double lb, double ub):
+ *     for i in range(dimension):
  *         if child[i] < lb:             # <<<<<<<<<<<<<<
  *             child[i] = min(2.0 * lb - child[i], ub)
  *         elif child[i] > ub:
@@ -6078,7 +6061,7 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
  *         if child[i] < lb:
  *             child[i] = min(2.0 * lb - child[i], ub)
  *         elif child[i] > ub:             # <<<<<<<<<<<<<<
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  * 
  */
     __pyx_t_4 = __pyx_v_i;
@@ -6097,9 +6080,9 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
       /* "slow_loops_cy.pyx":195
  *             child[i] = min(2.0 * lb - child[i], ub)
  *         elif child[i] > ub:
- *             child[i] = max(lb, 2.0 * lb - child[i])             # <<<<<<<<<<<<<<
+ *             child[i] = max(lb, 2.0 * ub - child[i])             # <<<<<<<<<<<<<<
  * 
- * def x_correction(child, _lambda, lb, ub):
+ * def x_correction(child, dimension, lb, ub):
  */
       __pyx_t_4 = __pyx_v_i;
       __pyx_t_5 = -1;
@@ -6111,7 +6094,7 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
         __Pyx_RaiseBufferIndexError(__pyx_t_5);
         __PYX_ERR(0, 195, __pyx_L1_error)
       }
-      __pyx_t_9 = ((2.0 * __pyx_v_lb) - (*((double *) ( /* dim=0 */ (__pyx_v_child.data + __pyx_t_4 * __pyx_v_child.strides[0]) ))));
+      __pyx_t_9 = ((2.0 * __pyx_v_ub) - (*((double *) ( /* dim=0 */ (__pyx_v_child.data + __pyx_t_4 * __pyx_v_child.strides[0]) ))));
       __pyx_t_7 = __pyx_v_lb;
       if (((__pyx_t_9 > __pyx_t_7) != 0)) {
         __pyx_t_8 = __pyx_t_9;
@@ -6134,7 +6117,7 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
  *         if child[i] < lb:
  *             child[i] = min(2.0 * lb - child[i], ub)
  *         elif child[i] > ub:             # <<<<<<<<<<<<<<
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  * 
  */
     }
@@ -6144,8 +6127,8 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
   /* "slow_loops_cy.pyx":190
  *     return _rand_choice(size)
  * 
- * cdef void _x_correction(double[:]child, int _lambda, double lb, double ub):             # <<<<<<<<<<<<<<
- *     for i in range(_lambda):
+ * cdef void _x_correction(double[:]child, int dimension, double lb, double ub):             # <<<<<<<<<<<<<<
+ *     for i in range(dimension):
  *         if child[i] < lb:
  */
 
@@ -6158,10 +6141,10 @@ static void __pyx_f_13slow_loops_cy__x_correction(__Pyx_memviewslice __pyx_v_chi
 }
 
 /* "slow_loops_cy.pyx":197
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  * 
- * def x_correction(child, _lambda, lb, ub):             # <<<<<<<<<<<<<<
- *     return _x_correction(child, _lambda, lb, ub)
+ * def x_correction(child, dimension, lb, ub):             # <<<<<<<<<<<<<<
+ *     return _x_correction(child, dimension, lb, ub)
  */
 
 /* Python wrapper */
@@ -6169,7 +6152,7 @@ static PyObject *__pyx_pw_13slow_loops_cy_25x_correction(PyObject *__pyx_self, P
 static PyMethodDef __pyx_mdef_13slow_loops_cy_25x_correction = {"x_correction", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_13slow_loops_cy_25x_correction, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_13slow_loops_cy_25x_correction(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_child = 0;
-  PyObject *__pyx_v__lambda = 0;
+  PyObject *__pyx_v_dimension = 0;
   PyObject *__pyx_v_lb = 0;
   PyObject *__pyx_v_ub = 0;
   int __pyx_lineno = 0;
@@ -6179,7 +6162,7 @@ static PyObject *__pyx_pw_13slow_loops_cy_25x_correction(PyObject *__pyx_self, P
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("x_correction (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_child,&__pyx_n_s_lambda_2,&__pyx_n_s_lb,&__pyx_n_s_ub,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_child,&__pyx_n_s_dimension,&__pyx_n_s_lb,&__pyx_n_s_ub,0};
     PyObject* values[4] = {0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
@@ -6203,7 +6186,7 @@ static PyObject *__pyx_pw_13slow_loops_cy_25x_correction(PyObject *__pyx_self, P
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lambda_2)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dimension)) != 0)) kw_args--;
         else {
           __Pyx_RaiseArgtupleInvalid("x_correction", 1, 4, 4, 1); __PYX_ERR(0, 197, __pyx_L3_error)
         }
@@ -6232,7 +6215,7 @@ static PyObject *__pyx_pw_13slow_loops_cy_25x_correction(PyObject *__pyx_self, P
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
     __pyx_v_child = values[0];
-    __pyx_v__lambda = values[1];
+    __pyx_v_dimension = values[1];
     __pyx_v_lb = values[2];
     __pyx_v_ub = values[3];
   }
@@ -6244,14 +6227,14 @@ static PyObject *__pyx_pw_13slow_loops_cy_25x_correction(PyObject *__pyx_self, P
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_13slow_loops_cy_24x_correction(__pyx_self, __pyx_v_child, __pyx_v__lambda, __pyx_v_lb, __pyx_v_ub);
+  __pyx_r = __pyx_pf_13slow_loops_cy_24x_correction(__pyx_self, __pyx_v_child, __pyx_v_dimension, __pyx_v_lb, __pyx_v_ub);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_13slow_loops_cy_24x_correction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child, PyObject *__pyx_v__lambda, PyObject *__pyx_v_lb, PyObject *__pyx_v_ub) {
+static PyObject *__pyx_pf_13slow_loops_cy_24x_correction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_child, PyObject *__pyx_v_dimension, PyObject *__pyx_v_lb, PyObject *__pyx_v_ub) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -6266,12 +6249,12 @@ static PyObject *__pyx_pf_13slow_loops_cy_24x_correction(CYTHON_UNUSED PyObject 
 
   /* "slow_loops_cy.pyx":198
  * 
- * def x_correction(child, _lambda, lb, ub):
- *     return _x_correction(child, _lambda, lb, ub)             # <<<<<<<<<<<<<<
+ * def x_correction(child, dimension, lb, ub):
+ *     return _x_correction(child, dimension, lb, ub)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_child, PyBUF_WRITABLE); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 198, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v__lambda); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_dimension); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
   __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_lb); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
   __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_v_ub); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
   __pyx_t_5 = __Pyx_void_to_None(__pyx_f_13slow_loops_cy__x_correction(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 198, __pyx_L1_error)
@@ -6284,10 +6267,10 @@ static PyObject *__pyx_pf_13slow_loops_cy_24x_correction(CYTHON_UNUSED PyObject 
   goto __pyx_L0;
 
   /* "slow_loops_cy.pyx":197
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  * 
- * def x_correction(child, _lambda, lb, ub):             # <<<<<<<<<<<<<<
- *     return _x_correction(child, _lambda, lb, ub)
+ * def x_correction(child, dimension, lb, ub):             # <<<<<<<<<<<<<<
+ *     return _x_correction(child, dimension, lb, ub)
  */
 
   /* function exit code */
@@ -20136,8 +20119,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
-  {&__pyx_n_s_lambda, __pyx_k_lambda, sizeof(__pyx_k_lambda), 0, 0, 1, 1},
-  {&__pyx_n_s_lambda_2, __pyx_k_lambda_2, sizeof(__pyx_k_lambda_2), 0, 0, 1, 1},
   {&__pyx_n_s_lb, __pyx_k_lb, sizeof(__pyx_k_lb), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_memview, __pyx_k_memview, sizeof(__pyx_k_memview), 0, 0, 1, 1},
@@ -20480,14 +20461,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "slow_loops_cy.pyx":98
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
  * 
- * def normalization(subpop_plus, lambda_, dimension, idx):             # <<<<<<<<<<<<<<
- *     return _normalization(subpop_plus, lambda_, dimension, idx)
+ * def normalization(subpop_plus, dimension, idx):             # <<<<<<<<<<<<<<
+ *     return _normalization(subpop_plus, dimension, idx)
  * 
  */
-  __pyx_tuple__29 = PyTuple_Pack(4, __pyx_n_s_subpop_plus, __pyx_n_s_lambda, __pyx_n_s_dimension, __pyx_n_s_idx); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(3, __pyx_n_s_subpop_plus, __pyx_n_s_dimension, __pyx_n_s_idx); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_slow_loops_cy_pyx, __pyx_n_s_normalization, 98, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_slow_loops_cy_pyx, __pyx_n_s_normalization, 98, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 98, __pyx_L1_error)
 
   /* "slow_loops_cy.pyx":109
  *             y[i] = 0.5 * round(2.0 * z[i])
@@ -20562,12 +20543,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_slow_loops_cy_pyx, __pyx_n_s_rand_choice, 187, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 187, __pyx_L1_error)
 
   /* "slow_loops_cy.pyx":197
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  * 
- * def x_correction(child, _lambda, lb, ub):             # <<<<<<<<<<<<<<
- *     return _x_correction(child, _lambda, lb, ub)
+ * def x_correction(child, dimension, lb, ub):             # <<<<<<<<<<<<<<
+ *     return _x_correction(child, dimension, lb, ub)
  */
-  __pyx_tuple__43 = PyTuple_Pack(4, __pyx_n_s_child, __pyx_n_s_lambda_2, __pyx_n_s_lb, __pyx_n_s_ub); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(4, __pyx_n_s_child, __pyx_n_s_dimension, __pyx_n_s_lb, __pyx_n_s_ub); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
   __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_slow_loops_cy_pyx, __pyx_n_s_x_correction, 197, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 197, __pyx_L1_error)
@@ -21068,8 +21049,8 @@ if (!__Pyx_RefNanny) {
   /* "slow_loops_cy.pyx":98
  *     return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
  * 
- * def normalization(subpop_plus, lambda_, dimension, idx):             # <<<<<<<<<<<<<<
- *     return _normalization(subpop_plus, lambda_, dimension, idx)
+ * def normalization(subpop_plus, dimension, idx):             # <<<<<<<<<<<<<<
+ *     return _normalization(subpop_plus, dimension, idx)
  * 
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_13slow_loops_cy_11normalization, NULL, __pyx_n_s_slow_loops_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
@@ -21150,10 +21131,10 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "slow_loops_cy.pyx":197
- *             child[i] = max(lb, 2.0 * lb - child[i])
+ *             child[i] = max(lb, 2.0 * ub - child[i])
  * 
- * def x_correction(child, _lambda, lb, ub):             # <<<<<<<<<<<<<<
- *     return _x_correction(child, _lambda, lb, ub)
+ * def x_correction(child, dimension, lb, ub):             # <<<<<<<<<<<<<<
+ *     return _x_correction(child, dimension, lb, ub)
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_13slow_loops_cy_25x_correction, NULL, __pyx_n_s_slow_loops_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
