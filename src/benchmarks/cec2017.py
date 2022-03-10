@@ -60,20 +60,20 @@ class Cec2017:
         y = self.shift_func(x)
         if self.problem_id == 1:
             f = ((np.cumsum(y))**2).sum()
-            v_g = max(0, (y**2 - 5000.0 * cos(0.1 * pi * y) - 4000.0).sum())
+            v_g += max(0, (y**2 - 5000.0 * cos(0.1 * pi * y) - 4000.0).sum())
             len_g = 1
             len_h = 0
 
         elif self.problem_id == 2:
             z = self.rotate_func(y, self.matrix)
             f = ((np.cumsum(y)) ** 2).sum()
-            v_g = max(0, (z ** 2 - 5000.0 * cos(0.1 * pi * z) - 4000.0).sum())
+            v_g += max(0, (z ** 2 - 5000.0 * cos(0.1 * pi * z) - 4000.0).sum())
             len_g = 1
             len_h = 0
 
         elif self.problem_id == 3:
             f = ((np.cumsum(y)) ** 2).sum()
-            v_g = max(0, (y ** 2 - 5000.0 * cos(0.1 * pi * y) - 4000.0).sum())
+            v_g += max(0, (y ** 2 - 5000.0 * cos(0.1 * pi * y) - 4000.0).sum())
             v_h += max(0, abs(y * sin(0.1 * pi * y)).sum() - 1E-4)
             len_g = 1
             len_h = 1
@@ -108,8 +108,9 @@ class Cec2017:
 
         elif self.problem_id == 7:
             f = (y * sin(y)).sum()
-            v_h += max(0, abs(y - 100.0 * cos(0.5 * y) + 100.0).sum() - 1E-4)
-            v_h += max(0, abs(-(y - 100.0 * cos(0.5 * y) + 100.0)).sum() - 1E-4)
+            temp = y - 100.0 * cos(0.5 * y) + 100.0
+            v_h += max(0, abs(temp).sum() - 1E-4)
+            v_h += max(0, abs(-temp).sum() - 1E-4)
             len_g = 0
             len_h = 2
 
@@ -126,7 +127,7 @@ class Cec2017:
             f = np_max(y)
             y_odd = y[::2]
             y_even = y[1::2]
-            v_g += max(0, abs(np.prod(y_even)))
+            v_g += max(0, np.prod(y_even))
             v_h += max(0, abs((y_odd[:-1] ** 2 - y_odd[1:]) ** 2).sum() - 1E-4)
             len_g = 1
             len_h = 1
@@ -140,7 +141,7 @@ class Cec2017:
 
         elif self.problem_id == 11:
             f = y.sum()
-            v_g += max(0, abs(np.prod(y)))
+            v_g += max(0, np.prod(y))
             v_h += max(0, abs(((y[:-1] - y[1:]) ** 2).sum()) - 1E-4)
             len_g = 1
             len_h = 1
@@ -184,7 +185,7 @@ class Cec2017:
 
         elif self.problem_id == 17:
             f, g1 = problem_17_26(self.dimension, y)
-            v_g += max(0, abs(1.0 - g1) - 1E-4)
+            v_g += max(0, 1.0 - g1)
             v_h += max(0, abs((y**2).sum() - 4.0 * self.dimension) - 1E-4)
             len_g = 1
             len_h = 1
@@ -261,7 +262,7 @@ class Cec2017:
         elif self.problem_id == 26:
             z = self.rotate_func(y, self.matrix)
             f, g1 = problem_17_26(self.dimension, z)
-            v_g += max(0, abs(1.0 - g1) - 1E-4)
+            v_g += max(0, 1.0 - g1)
             v_h += max(0, abs((z ** 2).sum() - 4.0 * self.dimension) - 1E-4)
             len_g = 1
             len_h = 1

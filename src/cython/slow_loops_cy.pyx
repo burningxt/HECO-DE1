@@ -82,18 +82,15 @@ def np_max_min(z, dimension, axis):
 
 cdef tuple _normalization(double[:, :]subpop_plus, int dimension,  int idx):
     cdef:
-        double equ_min, equ_max, obj_min, obj_max, vio_min, vio_max, equ_norm_idx, \
-            obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
+        double equ_min, equ_max, obj_min, obj_max, vio_min, \
+            vio_max, equ_norm, obj_norm, vio_norm
     equ_min, equ_max = _np_max_min(subpop_plus, dimension, 1)
     obj_min, obj_max = _np_max_min(subpop_plus, dimension, 2)
     vio_min, vio_max = _np_max_min(subpop_plus, dimension, 3)
-    equ_norm_idx = (subpop_plus[idx, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
-    obj_norm_idx = (subpop_plus[idx, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
-    vio_norm_idx = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
-    equ_norm_child = (subpop_plus[-1, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
-    obj_norm_child = (subpop_plus[-1, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
-    vio_norm_child = (subpop_plus[-1, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
-    return equ_norm_idx, obj_norm_idx, vio_norm_idx, equ_norm_child, obj_norm_child, vio_norm_child
+    equ_norm = (subpop_plus[idx, dimension + 1] - equ_min) / (equ_max - equ_min + 1E-50)
+    obj_norm = (subpop_plus[idx, dimension + 2] - obj_min) / (obj_max - obj_min + 1E-50)
+    vio_norm = (subpop_plus[idx, dimension + 3] - vio_min) / (vio_max - vio_min + 1E-50)
+    return equ_norm, obj_norm, vio_norm
 
 def normalization(subpop_plus, dimension, idx):
     return _normalization(subpop_plus, dimension, idx)
@@ -164,7 +161,7 @@ cdef int _rand_choice_pb_cy(int[:]arr, double[:]pb):
         selected_one = arr[1]
     elif pb[0] + pb[1] <= r < pb[0] + pb[1] + pb[2]:
         selected_one = arr[2]
-    else:
+    elif pb[0] + pb[1] + pb[2] <= r <= 1.0:
         selected_one = arr[3]
     return selected_one
 
