@@ -31,3 +31,7 @@ if __name__ == '__main__':
     stop = timeit.default_timer()
     print('Time: ', stop - start)
 
+
+# print(fes, best_obj, best_vio, pop[0, self.dimension + 2], pop[0, self.dimension + 3],
+#       best_solution_on_obj[self.dimension + 2], best_solution_on_obj[self.dimension + 3])
+
