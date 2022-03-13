@@ -85,14 +85,14 @@ class Heco(Cec2017):
             count_success_strategy[:] = 0
         return rand_choice_pb_cy(strategy_ids, strategy_pb)
 
-    def mutation_1(self, subpop, archive, child, mu, archive_position, lb, ub, idx):
+    def mutation_1(self, subpop, archive, child, mu, lb, ub, idx):
         x_r1 = rand_int(0, self.lambda_ - 1)
-        x_r2 = rand_int(0, self.lambda_ + archive_position[0] - 2)
+        x_r2 = rand_int(0, self.lambda_ + archive.shape[0] - 1)
         best_solution_on_fitness = self.find_best(subpop, 0)
         while x_r1 == idx:
             x_r1 = rand_int(0, self.lambda_ - 1)
         while x_r2 == x_r1 or x_r2 == idx:
-            x_r2 = rand_int(0, self.lambda_ + archive_position[0] - 2)
+            x_r2 = rand_int(0, self.lambda_ + archive.shape[0] - 1)
         if x_r2 < self.lambda_:
             child[:self.dimension] = subpop[idx, :self.dimension] \
                                      + mu * (best_solution_on_fitness[:self.dimension] - subpop[idx, :self.dimension]) \
@@ -116,13 +116,13 @@ class Heco(Cec2017):
     def crossover_bi(self, subpop, child, cr, idx):
         crossover_bi_cy(subpop, child, self.dimension, cr, idx)
 
-    def differential_evolution(self, subpop, archive, child, mu, cr, archive_position,
+    def differential_evolution(self, subpop, archive, child, mu, cr,
                                strategy_id, lb, ub, idx):
         if strategy_id == 0:
-            self.mutation_1(subpop, archive, child, mu, archive_position, lb, ub, idx)
+            self.mutation_1(subpop, archive, child, mu, lb, ub, idx)
             self.crossover_exp(subpop, child, cr, idx)
         elif strategy_id == 1:
-            self.mutation_1(subpop, archive, child, mu, archive_position, lb, ub, idx)
+            self.mutation_1(subpop, archive, child, mu, lb, ub, idx)
             self.crossover_bi(subpop, child, cr, idx)
         elif strategy_id == 2:
             self.mutation_2(subpop, child, mu, lb, ub)
@@ -167,22 +167,33 @@ class Heco(Cec2017):
             subpop_plus[_, self.dimension] = w1 * equ_norm + w2 * obj_norm + w3 * vio_norm
 
     def selection(self, pop, subpop_plus, subpop, archive, fitness_improvements, success_mu, success_cr,
-                  mu, cr, strategy_id, count_success_strategy, archive_position, selected_indexes, idx):
+                  mu, cr, strategy_id, count_success_strategy, selected_indexes, idx):
         if subpop_plus[idx, self.dimension] > subpop_plus[-1, self.dimension]:
             success_mu[strategy_id].append(mu)
             success_cr[strategy_id].append(cr)
             fitness_improvements[strategy_id].append(abs(subpop_plus[idx, self.dimension]
                                                      - subpop_plus[-1, self.dimension]))
-            if archive_position[0] < self.archive_coefficient * pop.shape[0] - 1:
-                archive[archive_position[0], :] = subpop_plus[idx, :]
-                archive_position[0] += 1
-            else:
-                archive[rand_int(0, self.archive_coefficient * pop.shape[0] - 1), :] \
-                    = subpop_plus[idx, :]
+            # if archive_position[0] < self.archive_coefficient * pop.shape[0] - 1:
+            #     archive[archive_position[0], :] = subpop_plus[idx, :]
+            #     archive_position[0] += 1
+            # else:
+            #     archive[rand_int(0, self.archive_coefficient * pop.shape[0] - 1), :] \
+            #         = subpop_plus[idx, :]
+
+            if archive[0, 0] == 0.0:
+                archive[0, :] = subpop_plus[idx, :]
+            elif archive.shape[0] < self.archive_coefficient * pop.shape[0]:
+                archive = np.vstack((archive, subpop_plus[idx, :]))
+            while archive.shape[0] > self.archive_coefficient * pop.shape[0]:
+                archive = np.delete(archive, rand_int(0, archive.shape[0] - 1), 0)
+
+
+
             # if selected_indexes[idx]:
             #     subpop[idx, :] = subpop_plus[-1, :]
             subpop[idx, :] = subpop_plus[-1, :]
             count_success_strategy[strategy_id] += 1
+        return archive
 
     def find_best(self, pop, axis):
         return pop[np.argmin(pop[:, self.dimension + axis]), :]
@@ -217,7 +228,7 @@ class Heco(Cec2017):
         pop = np.zeros((self.pop_size_init, self.dimension + 10))
         subpop = np.zeros((self.lambda_, self.dimension + 10))
         child = np.zeros(self.dimension + 10)
-        archive = np.zeros((self.archive_coefficient * self.pop_size_init, self.dimension + 10))
+        archive = np.zeros((1, self.dimension + 10))
         subpop_plus = np.zeros((self.lambda_ + 1, self.dimension + 10))
         memory_mu, memory_cr = self.init_memory()
         strategy_ids = np.arange(self.number_of_strategy)
@@ -226,7 +237,6 @@ class Heco(Cec2017):
         lb, ub = self.get_lb_ub(self.problem_id)
         self.init_pop(pop, lb, ub)
         fes = self.pop_size_init
-        archive_position = [0]
         memory_position = [0] * self.number_of_strategy
         best_obj = pop[0, self.dimension + 2]
         best_vio = pop[0, self.dimension + 3]
@@ -239,13 +249,14 @@ class Heco(Cec2017):
                 strategy_id = self.choose_strategy(strategy_ids, strategy_pb, count_success_strategy)
                 mu, cr = self.generate_mu_cr(memory_mu, memory_cr, success_cr, strategy_id)
                 self.fitness(subpop, fes, idx)
-                self.differential_evolution(subpop, archive, child, mu, cr, archive_position, strategy_id, lb, ub, idx)
+                self.differential_evolution(subpop, archive, child, mu, cr, strategy_id, lb, ub, idx)
                 self.evaluate(child)
                 subpop_plus[:self.lambda_, :] = subpop
                 subpop_plus[self.lambda_, :] = child
                 self.fitness(subpop_plus, fes, idx)
-                self.selection(pop, subpop_plus, subpop, archive, fitness_improvements, success_mu, success_cr,
-                               mu, cr, strategy_id, count_success_strategy, archive_position, selected_indexes, idx)
+                archive = self.selection(pop, subpop_plus, subpop, archive, fitness_improvements,
+                                         success_mu, success_cr, mu, cr, strategy_id, count_success_strategy,
+                                         selected_indexes, idx)
                 fes += 1
             pop[selected_indexes, :] = subpop
             self.update_memory(memory_mu, memory_cr, success_mu, success_cr, fitness_improvements,

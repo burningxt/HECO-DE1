@@ -74,7 +74,7 @@ class Cec2017:
         elif self.problem_id == 3:
             f = ((np.cumsum(y)) ** 2).sum()
             v_g += max(0, (y ** 2 - 5000.0 * cos(0.1 * pi * y) - 4000.0).sum())
-            v_h += max(0, abs(y * sin(0.1 * pi * y)).sum() - 1E-4)
+            v_h += max(0, abs((y * sin(0.1 * pi * y)).sum()) - 1E-4)
             len_g = 1
             len_h = 1
 
@@ -97,20 +97,20 @@ class Cec2017:
 
         elif self.problem_id == 6:
             f = (y**2 - 10.0 * cos(2.0 * pi * y) + 10.0).sum()
-            v_h += max(0, abs(-y * sin(2.0 * y)).sum() - 1E-4)
-            v_h += max(0, abs(y * sin(2.0 * pi * y)).sum() - 1E-4)
-            v_h += max(0, abs(-y * cos(2.0 * y)).sum() - 1E-4)
-            v_h += max(0, abs(y * cos(2.0 * pi * y)).sum() - 1E-4)
-            v_h += max(0, abs(y * sin(2.0 * (abs(y))**0.5)).sum() - 1E-4)
-            v_h += max(0, abs(-y * sin(2.0 * (abs(y)) ** 0.5)).sum() - 1E-4)
+            v_h += max(0, abs((-y * sin(2.0 * y)).sum()) - 1E-4)
+            v_h += max(0, abs((y * sin(2.0 * pi * y)).sum()) - 1E-4)
+            v_h += max(0, abs((-y * cos(2.0 * y)).sum()) - 1E-4)
+            v_h += max(0, abs((y * cos(2.0 * pi * y)).sum()) - 1E-4)
+            v_h += max(0, abs((y * sin(2.0 * (abs(y))**0.5)).sum()) - 1E-4)
+            v_h += max(0, abs((-y * sin(2.0 * (abs(y)) ** 0.5)).sum()) - 1E-4)
             len_g = 0
             len_h = 6
 
         elif self.problem_id == 7:
             f = (y * sin(y)).sum()
             temp = y - 100.0 * cos(0.5 * y) + 100.0
-            v_h += max(0, abs(temp).sum() - 1E-4)
-            v_h += max(0, abs(-temp).sum() - 1E-4)
+            v_h += max(0, abs(temp.sum()) - 1E-4)
+            v_h += max(0, abs(-temp.sum()) - 1E-4)
             len_g = 0
             len_h = 2
 
@@ -118,8 +118,8 @@ class Cec2017:
             f = np_max(y)
             y_odd = y[::2]
             y_even = y[1::2]
-            v_h += max(0, abs(np.cumsum(y_odd) ** 2).sum() - 1E-4)
-            v_h += max(0, abs(np.cumsum(y_even) ** 2).sum() - 1E-4)
+            v_h += max(0, abs((np.cumsum(y_odd) ** 2).sum()) - 1E-4)
+            v_h += max(0, abs((np.cumsum(y_even) ** 2).sum()) - 1E-4)
             len_g = 0
             len_h = 2
 
@@ -128,7 +128,7 @@ class Cec2017:
             y_odd = y[::2]
             y_even = y[1::2]
             v_g += max(0, np.prod(y_even))
-            v_h += max(0, abs((y_odd[:-1] ** 2 - y_odd[1:]) ** 2).sum() - 1E-4)
+            v_h += max(0, abs(((y_odd[:-1] ** 2 - y_odd[1:]) ** 2).sum()) - 1E-4)
             len_g = 1
             len_h = 1
 
