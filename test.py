@@ -1,11 +1,10 @@
 
 import numpy as np
 
-x = np.array([[1,2,3],
-        [4,5,6],
-        [7,8,9]])
-
-# x = np.delete(x, 0, axis=0)
-# print(x)
-a = np.empty((1, 5))
+x = np.random.random((20, 3))
+y = x.tolist()
+while x.shape[0] > 2:
+        x = np.delete(x, x.shape[0] - 1, 0)
+while len(y) > 10:
+        y.pop(len(y) - 1)
 z = 0

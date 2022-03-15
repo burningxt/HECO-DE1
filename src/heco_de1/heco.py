@@ -59,10 +59,7 @@ class Heco(Cec2017):
         mu_ri = memory_mu[strategy_id, ri]
         if len(success_cr[strategy_id]):
             if max(success_cr[strategy_id]) == -1.0:
-                cr = 0.0
-            # else:
-            #     cr = rand_normal(cr_ri, 0.1)
-
+                cr_ri = 0.0
         cr = rand_normal(cr_ri, 0.1)
         mu = rand_cauchy(mu_ri, 0.1)
         while mu <= 0.0:
@@ -180,12 +177,21 @@ class Heco(Cec2017):
             #     archive[rand_int(0, self.archive_coefficient * pop.shape[0] - 1), :] \
             #         = subpop_plus[idx, :]
 
-            if archive[0, 0] == 0.0:
-                archive[0, :] = subpop_plus[idx, :]
-            elif archive.shape[0] < self.archive_coefficient * pop.shape[0]:
-                archive = np.vstack((archive, subpop_plus[idx, :]))
+            # if not archive.shape[0]:
+            #     archive = np.hstack((archive, subpop_plus[idx, :])).reshape(1, self.dimension + 10)
+            # elif archive.shape[0] < self.archive_coefficient * pop.shape[0]:
+            #     archive = np.vstack((archive, subpop_plus[idx, :]))
+            # else:
+            #     archive[rand_int(0, self.archive_coefficient * pop.shape[0] - 1), :] \
+            #         = subpop_plus[idx, :]
+            # # else:
+            # #     archive = np.vstack((archive, subpop_plus[idx, :]))
+            # while archive.shape[0] > self.archive_coefficient * pop.shape[0]:
+            #     archive = np.delete(archive, rand_int(0, archive.shape[0] - 1), axis=0)
+
+            archive.tolist().append(subpop_plus[idx, :])
             while archive.shape[0] > self.archive_coefficient * pop.shape[0]:
-                archive = np.delete(archive, rand_int(0, archive.shape[0] - 1), 0)
+                archive.tolist().pop(rand_int(0, len(archive) - 1))
 
 
 
@@ -228,7 +234,7 @@ class Heco(Cec2017):
         pop = np.zeros((self.pop_size_init, self.dimension + 10))
         subpop = np.zeros((self.lambda_, self.dimension + 10))
         child = np.zeros(self.dimension + 10)
-        archive = np.zeros((1, self.dimension + 10))
+        archive = np.array([])
         subpop_plus = np.zeros((self.lambda_ + 1, self.dimension + 10))
         memory_mu, memory_cr = self.init_memory()
         strategy_ids = np.arange(self.number_of_strategy)
@@ -270,9 +276,6 @@ class Heco(Cec2017):
                 if best_obj > pop[0, self.dimension + 2]:
                     best_obj = pop[0, self.dimension + 2]
             best_solution_on_obj = self.find_best(pop, 2)
-            print(fes, best_obj, best_vio, pop[0, self.dimension + 2], pop[0, self.dimension + 3],
-                  best_solution_on_obj[self.dimension + 2], best_solution_on_obj[self.dimension + 3],
-                  pop.shape[0])
         return best_obj, best_vio
 
 
